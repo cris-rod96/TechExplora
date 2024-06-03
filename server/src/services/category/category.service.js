@@ -1,3 +1,5 @@
+import { Op } from 'sequelize'
+
 const createCategoryService = ({ Category, SubCategory }) => {
   const getAllCategories = async () => {
     const categories = await Category.findAll({
@@ -9,12 +11,12 @@ const createCategoryService = ({ Category, SubCategory }) => {
     return categories
   }
 
-  const createCategory = async ({ category }) => {
-    const [newCategory, created] = await Category.findOrCreate({
-      where: { name: { [Op.iLike]: `%${category.name}%` } },
-      defaults: { ...category },
+  const createCategory = async ({ name }) => {
+    const [category, created] = await Category.findOrCreate({
+      where: { name: { [Op.iLike]: `%${name}%` } },
+      defaults: { name },
     })
-    return { newCategory, created }
+    return { category, created }
   }
 
   const deleteCategory = async (id) => {
