@@ -18,4 +18,4 @@ const conceptController = createConceptController({
   conceptService,
 })
 
-export { categoryController, subCategoryController }
+export { categoryController, subCategoryController, conceptController }
