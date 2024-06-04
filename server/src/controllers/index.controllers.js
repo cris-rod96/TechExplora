@@ -11,4 +11,4 @@ const subCategoryController = createSubCategoryController({
   subCategoryService,
 })
 
-export { categoryController }
+export { categoryController, subCategoryController }
