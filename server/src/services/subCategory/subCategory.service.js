@@ -1,6 +1,11 @@
 import { Op } from 'sequelize'
 
 const createSubCategoryService = ({ SubCategory }) => {
+  const getSubCategoryById = async (id) => {
+    const subCategory = await SubCategory.findByPk(id)
+    return subCategory
+  }
+
   const createSubCategory = async ({ name, CategoryId }) => {
     const [subCategory, created] = await SubCategory.findOrCreate({
       where: { name: { [Op.iLike]: `%${name}%` } },
@@ -10,7 +15,7 @@ const createSubCategoryService = ({ SubCategory }) => {
     return { subCategory, created }
   }
 
-  return { createSubCategory }
+  return { createSubCategory, getSubCategoryById }
 }
 
 export default createSubCategoryService
