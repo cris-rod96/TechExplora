@@ -1,6 +1,10 @@
 import { Op } from 'sequelize'
 
 const createCategoryService = ({ Category, SubCategory }) => {
+  const getCategoryById = async ({ id }) => {
+    const category = await Category.findByPk(id)
+    return category
+  }
   const getAllCategories = async () => {
     const categories = await Category.findAll({
       where: {
@@ -31,6 +35,7 @@ const createCategoryService = ({ Category, SubCategory }) => {
 
   return {
     getAllCategories,
+    getCategoryById,
     createCategory,
     deleteCategory,
   }
